@@ -1,0 +1,25 @@
+workspace(name = "test")
+
+load(":external_or_system_deps.bzl", "xenial_compatible_dep")
+
+xenial_compatible_dep(
+    name = "nothing",
+)
+
+"""
+Ideally the rule should host all the metadata to handle both
+ways of using the dependency: use the one in the system or
+use the default drake embedded method:
+
+ from_source = git_archive(
+    name = "gtest",
+    repository = "google/googletest",
+    commit = "release-1.8.0",
+    sha256 = "5a177609e9c488e8a72649359ba51450db7d8",
+    build_file = "tools/gtest.BUILD",
+  
+  )
+   system_installation = system_cmake_dep(
+       cmake_module = “gtest”
+  )
+"""
